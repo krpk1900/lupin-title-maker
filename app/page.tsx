@@ -2,6 +2,6 @@ import { ShowString } from "./components/ShowString"
 
 export default function Page() {
   return (
-    <ShowString string="あいうえお" />
+    <ShowString string="ルパンタイトルメーカー" />
   )
 }
