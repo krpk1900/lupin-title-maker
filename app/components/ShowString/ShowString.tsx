@@ -1,7 +1,10 @@
 "use client";
 
 import * as React from 'react';
+import { Box, Button } from "@mui/material"
 import { playSound } from '../../utils/sound';
+import { ThemeProvider } from '@mui/material/styles';
+import { theme } from '../../theme';
 import styles from './ShowString.module.css';
 
 type ShowStringProps = {
@@ -28,10 +31,17 @@ export const ShowString = ({ string }: ShowStringProps) => {
   }, [index]);
 
   return (
-    showAllString ? (
-      <div className={styles.showAllString}>{string}</div>
-    ) : (
-      <div className={styles.showString}>{string[index]}</div>
-    )
+    <ThemeProvider theme={theme}>
+      {showAllString ? (
+        <Box display="flex" flexDirection="column" alignItems="center" className={styles.showAllString}>
+          {string}
+          <Button size="large" variant="contained" color="primary" >作成</Button>
+        </Box>
+      ) : (
+        <Box display="flex" flexDirection="column" alignItems="center" className={styles.showString}>
+          {string[index]}
+        </Box>
+      )}
+    </ThemeProvider>
   );
 };
