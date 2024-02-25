@@ -2,7 +2,6 @@
 
 import * as React from 'react';
 import { playSound } from '../../utils/sound';
-import { getRandomInt } from '../../utils/math';
 import styles from './ShowString.module.css';
 
 type ShowStringProps = {
@@ -13,23 +12,20 @@ export const ShowString = ({ string }: ShowStringProps) => {
   const [index, setIndex] = React.useState(0);
   const [showAllString, setShowAllString] = React.useState(false);
 
-  React.useEffect(() => {
-    const timer = setInterval(() => {
-      setIndex((currentIndex) => {
-        if (currentIndex < string.length - 1) {
-          playSound({ filename: '/sound/typeWriter.mp3', volume: 1 });
-          return currentIndex + 1;
-        } else {
-          clearInterval(timer);
-          setShowAllString(true);
-          playSound({ filename: '/sound/titleCall.mp3', volume: 0.6 });
-          return currentIndex;
-        }
-      });
-    }, 220 + getRandomInt({ min: 0, max: 1000 }));
+  const typeNextChar = () => {
+    if (index < string.length - 1) {
+      playSound({ filename: '/sound/typeWriter.mp3', volume: 1 });
+      setIndex(index + 1);
+    } else {
+      playSound({ filename: '/sound/titleCall.mp3', volume: 0.6 });
+      setShowAllString(true);
+    }
+  };
 
-    return () => clearInterval(timer);
-  }, [string]);
+  React.useEffect(() => {
+    const timer = setTimeout(typeNextChar, 220);
+    return () => clearTimeout(timer);
+  }, [index]);
 
   return (
     showAllString ? (
