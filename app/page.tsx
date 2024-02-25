@@ -1,7 +1,7 @@
-import Image from "next/image";
+import { ShowString } from "./components/ShowString"
 
-export default function Home() {
+export default function Page() {
   return (
-    <div>aaa</div>
-  );
+    <ShowString string="ルパンタイトルメーカー" />
+  )
 }
