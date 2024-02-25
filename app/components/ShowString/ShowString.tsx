@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from 'react';
-import { playSound } from '../../utils/playSound';
+import { playSound } from '../../utils/sound';
+import { getRandomInt } from '../../utils/math';
 import styles from './ShowString.module.css';
 
 type ShowStringProps = {
@@ -25,7 +26,7 @@ export const ShowString = ({ string }: ShowStringProps) => {
           return currentIndex;
         }
       });
-    }, 220);
+    }, 220 + getRandomInt({ min: 0, max: 1000 }));
 
     return () => clearInterval(timer);
   }, [string]);
