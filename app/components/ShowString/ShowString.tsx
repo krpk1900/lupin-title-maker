@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from 'react';
+import { playSound } from '../../utils/playSound';
 import styles from './ShowString.module.css';
 
 type ShowStringProps = {
@@ -15,10 +16,12 @@ export const ShowString = ({ string }: ShowStringProps) => {
     const timer = setInterval(() => {
       setIndex((currentIndex) => {
         if (currentIndex < string.length - 1) {
+          playSound({ filename: '/sound/typeWriter.mp3', volume: 1 });
           return currentIndex + 1;
         } else {
           clearInterval(timer);
           setShowAllString(true);
+          playSound({ filename: '/sound/titleCall.mp3', volume: 0.6 });
           return currentIndex;
         }
       });
