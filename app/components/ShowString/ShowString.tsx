@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from 'react';
-import { Box, Button } from "@mui/material"
+import { Box } from "@mui/material"
+import { CreateTextDialogButton } from '../CreateTextDialogButton';
 import { playSound } from '../../utils/sound';
 import { ThemeProvider } from '@mui/material/styles';
 import { theme } from '../../theme';
@@ -35,7 +36,7 @@ export const ShowString = ({ string }: ShowStringProps) => {
       {showAllString ? (
         <Box display="flex" flexDirection="column" alignItems="center" className={styles.showAllString}>
           {string}
-          <Button size="large" variant="contained" color="primary" >作成</Button>
+          <CreateTextDialogButton />
         </Box>
       ) : (
         <Box display="flex" flexDirection="column" alignItems="center" className={styles.showString}>
